@@ -1,1 +1,1 @@
-Includes beta version of Arduino code and C# from application which can control this code.
+Includes initial version of Arduino code and C# from application which can control this code.
