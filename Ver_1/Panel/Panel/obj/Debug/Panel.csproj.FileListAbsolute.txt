@@ -1,0 +1,10 @@
+C:\Users\vaterfa\Desktop\Arduino1\Panel\bin\Debug\Panel.exe.config
+C:\Users\vaterfa\Desktop\Arduino1\Panel\bin\Debug\Panel.exe
+C:\Users\vaterfa\Desktop\Arduino1\Panel\bin\Debug\Panel.pdb
+C:\Users\vaterfa\Desktop\Arduino1\Panel\obj\Debug\Panel.csprojAssemblyReference.cache
+C:\Users\vaterfa\Desktop\Arduino1\Panel\obj\Debug\Panel.Form1.resources
+C:\Users\vaterfa\Desktop\Arduino1\Panel\obj\Debug\Panel.Properties.Resources.resources
+C:\Users\vaterfa\Desktop\Arduino1\Panel\obj\Debug\Panel.csproj.GenerateResource.cache
+C:\Users\vaterfa\Desktop\Arduino1\Panel\obj\Debug\Panel.csproj.CoreCompileInputs.cache
+C:\Users\vaterfa\Desktop\Arduino1\Panel\obj\Debug\Panel.exe
+C:\Users\vaterfa\Desktop\Arduino1\Panel\obj\Debug\Panel.pdb
