@@ -17,7 +17,7 @@ void setup() {
   pinMode(role2, OUTPUT);
   pinMode(mesafeSensor, INPUT);
   pinMode(gazSensor, INPUT);
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop() {
@@ -25,9 +25,9 @@ void loop() {
     mesafeDeger=digitalRead(mesafeSensor);  
     gazDeger = analogRead(gazSensor);
 
-    if (mesafeDeger == 1 && gazDeger>250) { Serial.println("ikiHata"); }
-    else if (mesafeDeger == 1 && gazDeger < 250) { Serial.println("mesafe"); }
-    else if (mesafeDeger == 0 && gazDeger > 250) { Serial.println("gaz"); }
+    if (mesafeDeger == HIGH && gazDeger>250) { Serial.println("ikiHata"); }
+    else if (mesafeDeger == HIGH && gazDeger < 250) { Serial.println("mesafe"); }
+    else if (mesafeDeger == LOW && gazDeger > 250) { Serial.println("gaz"); }
     else { Serial.println("hataYok"); }
   
   while(Serial.available()){
