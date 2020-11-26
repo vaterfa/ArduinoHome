@@ -1,0 +1,5 @@
+Pins : 
+
+RELAY 		= D5
+ON BUTTON	= D8
+OFF BUTTON	= D9

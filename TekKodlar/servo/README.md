@@ -1,0 +1,5 @@
+Pins : 
+
+0 BUTTON	= D2
+90 BUTTON	= D4
+SERVO		= D11
