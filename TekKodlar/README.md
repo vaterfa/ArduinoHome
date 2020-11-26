@@ -1,1 +1,1 @@
-Includes sensors and servo codes seperatly.
+With this codes we can do seperate operations on our arduino and nodemcu boards.
