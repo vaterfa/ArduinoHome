@@ -1,31 +1,34 @@
 #include <Servo.h>
 Servo motor;
 
-#define role1 	5
-#define role2 	6
-#define servo1	11
+#define role1 4
+#define role2 0
+#define servo1 5
 int roleONDurum;
 int roleOFFDurum;
 
-#define mesafeSensor A0
-#define gazSensor A1
+#define mesafeSensor 2
+#define gazSensor A0
 int mesafeDeger;  
 int gazDeger;
 
 void setup() {  
   pinMode(role1, OUTPUT);
   pinMode(role2, OUTPUT);
+  pinMode(mesafeSensor, INPUT);
+  pinMode(gazSensor, INPUT);
   Serial.begin(9600);
 }
 
 void loop() {
 
-    mesafeDeger=analogRead(mesafeSensor);  
-    gazDeger=analogRead(gazSensor);  
-    if (gazDeger>=80&&mesafeDeger>=45){Serial.println("ikiHata");}
-    else if (gazDeger<=100&&mesafeDeger>=45){Serial.println("mesafe");}
-    else if (gazDeger>=100&&mesafeDeger<=45){Serial.println("gaz");}
-    else {Serial.println("hataYok");}
+    mesafeDeger=digitalRead(mesafeSensor);  
+    gazDeger = analogRead(gazSensor);
+
+    if (mesafeDeger == 1 && gazDeger>250) { Serial.println("ikiHata"); }
+    else if (mesafeDeger == 1 && gazDeger < 250) { Serial.println("mesafe"); }
+    else if (mesafeDeger == 0 && gazDeger > 250) { Serial.println("gaz"); }
+    else { Serial.println("hataYok"); }
   
   while(Serial.available()){
     char c = Serial.read();
@@ -44,22 +47,18 @@ void loop() {
     else if(c == '2')
     {
         digitalWrite(role1,HIGH);
-        delay(1000);
     }
      else if(c == '3')
     {
         digitalWrite(role1,LOW); 
-        delay(1000);
     }
     else if(c == '4')
     {
         digitalWrite(role2,HIGH);
-        delay(1000);
     }
     else if(c == '5')
     {
         digitalWrite(role2,LOW); 
-        delay(1000);
     }  
     }
 }
