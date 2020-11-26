@@ -1,5 +1,5 @@
 Pins : 
 
-0 BUTTON	= D2
-90 BUTTON	= D4
-SERVO		= D11
+0 BUTTON	= 2
+90 BUTTON	= 4
+SERVO		= 11

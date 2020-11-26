@@ -2,4 +2,4 @@ Pins :
 
 GAS SENSOR	= A1
 IR SENSOR	= A0
-LED			= D2
+LED			= 2
