@@ -1,1 +1,7 @@
-Includes codes of arduino also nodeKart folder includes nodemcu version of the same code.
+Pins : 
+
+GAS SENSOR	= A1
+IR SENSOR	= A0
+RELAY 1		= 5
+RELAY 2		= 6
+SERVO		= 11
