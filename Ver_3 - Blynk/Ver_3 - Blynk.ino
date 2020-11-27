@@ -5,36 +5,57 @@
 
 #include <Servo.h>
 
+char auth[] = "auth";
+
+char ssid[] = "ssid";
+char pass[] = "pass";
+
+WidgetLCD lcdMesafe(V1);
+WidgetLCD lcdGaz(V2);
+
 Servo motor;
 
-char auth[] = "m4SR4ubeivA8CkJCzhPxy7WkEhAbTux-";
+int servoTut;
 
-char ssid[] = "N0D3M";
-char pass[] = "456852789123";
+#define role1 0
+#define role2 4
 
-BlynkTimer timer;
+#define mesafeSensor 2
+#define gazSensor A0
+int mesafeDeger;
+int gazDeger;
 
-  BLYNK_WRITE(V1)
+  BLYNK_WRITE(V0)
 {
-  int servoTut = param.asInt(); 
+  servoTut = param.asInt(); 
   motor.write(servoTut); 
 }
-
-
 
 void setup()
 {
   Serial.begin(9600);
 
   Blynk.begin(auth, ssid, pass);
+
+  motor.attach(5);
+
+  pinMode(mesafeSensor, INPUT);
+  pinMode(gazSensor, INPUT);
+
+  digitalWrite(role1, HIGH);
+  digitalWrite(role2, HIGH);
 }
 
 void loop()
 {
-  Blynk.run();
-  timer.run();
-  motor.attach(5);
-  
+	Blynk.run();
 
-  
+	mesafeDeger = digitalRead(mesafeSensor);
+	gazDeger = analogRead(gazSensor);
+
+	if (mesafeDeger != HIGH) {Blynk.virtualWrite(V1, "Mesafe Normal"); }
+	else { Blynk.virtualWrite(V1, "MESAFE UYARI!!"); Blynk.notify("MESAFE UYARI!!"); }
+
+	if (gazDeger < 250 && gazDeger > 40) {Blynk.virtualWrite(V2, "Gaz Normal");}
+	else { Blynk.virtualWrite(V2, "GAZ UYARI!!"); Blynk.notify("GAZ UYARI!!"); }
 }
