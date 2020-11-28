@@ -13,6 +13,8 @@ char pass[] = "pass";
 WidgetLCD lcdMesafe(V1);
 WidgetLCD lcdGaz(V2);
 
+int mesafeKontrol;
+
 Servo motor;
 
 int servoTut;
@@ -31,6 +33,10 @@ int gazDeger;
   motor.write(servoTut); 
 }
 
+  BLYNK_WRITE(V3)
+{
+  mesafeKontrol = param.asInt();
+}
 void setup()
 {
   Serial.begin(9600);
@@ -48,14 +54,17 @@ void setup()
 
 void loop()
 {
-	Blynk.run();
+  Blynk.run();
 
-	mesafeDeger = digitalRead(mesafeSensor);
-	gazDeger = analogRead(gazSensor);
+  mesafeDeger = digitalRead(mesafeSensor);
+  gazDeger = analogRead(gazSensor);
 
-	if (mesafeDeger != HIGH) {Blynk.virtualWrite(V1, "Mesafe Normal"); }
-	else { Blynk.virtualWrite(V1, "MESAFE UYARI!!"); Blynk.notify("MESAFE UYARI!!"); }
+  if(mesafeKontrol==1){ 
+    if (mesafeDeger != HIGH) {Blynk.virtualWrite(V1, "Mesafe Normal"); }
+    else { Blynk.virtualWrite(V1, "MESAFE UYARI!!"); Blynk.notify("MESAFE UYARI!!"); }
+  }
+  else { Blynk.virtualWrite(V1, "M. Tespit Kapalı");}
 
-	if (gazDeger < 250 && gazDeger > 40) {Blynk.virtualWrite(V2, "Gaz Normal");}
-	else { Blynk.virtualWrite(V2, "GAZ UYARI!!"); Blynk.notify("GAZ UYARI!!"); }
+  if (gazDeger < 250 && gazDeger > 40) {Blynk.virtualWrite(V2, "Gaz Normal");}
+  else { Blynk.virtualWrite(V2, "GAZ UYARI!!"); Blynk.notify("GAZ UYARI!!"); }
 }
