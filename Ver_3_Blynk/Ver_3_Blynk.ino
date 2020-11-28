@@ -50,6 +50,8 @@ void setup()
 
   digitalWrite(role1, HIGH);
   digitalWrite(role2, HIGH);
+  
+  Blynk.notify("Bağlantı kuruldu.");
 }
 
 void loop()
