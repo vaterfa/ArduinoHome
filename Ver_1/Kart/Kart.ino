@@ -4,13 +4,9 @@ Servo motor;
 #define role1 	5
 #define role2 	6
 #define servo1	11
-int roleONDurum;
-int roleOFFDurum;
 
 #define mesafeSensor A0
 #define gazSensor A1
-int mesafeDeger;  
-int gazDeger;
 
 void setup() {  
   pinMode(role1, OUTPUT);
@@ -20,11 +16,9 @@ void setup() {
 
 void loop() {
 
-    mesafeDeger=analogRead(mesafeSensor);  
-    gazDeger=analogRead(gazSensor);  
-    if (gazDeger>=80&&mesafeDeger>=45){Serial.println("ikiHata");}
-    else if (gazDeger<=100&&mesafeDeger>=45){Serial.println("mesafe");}
-    else if (gazDeger>=100&&mesafeDeger<=45){Serial.println("gaz");}
+    if (analogRead(gazSensor)>=80&&analogRead(mesafeSensor)>=45){Serial.println("ikiHata");}
+    else if (analogRead(gazSensor)<=100&&analogRead(mesafeSensor)>=45){Serial.println("mesafe");}
+    else if (analogRead(gazSensor)>=100&&analogRead(mesafeSensor)<=45){Serial.println("gaz");}
     else {Serial.println("hataYok");}
   
   while(Serial.available()){

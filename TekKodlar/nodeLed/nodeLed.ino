@@ -1,10 +1,6 @@
 #define led 4		//led 4 nolu pine baðlandý.
 #define buton 5		//buton 5 nolu pine baðlandý.
 
-int butonGirdi;
-char konsolGirdi;
-
-
 void setup() {
 
 	pinMode(led, OUTPUT);
@@ -13,17 +9,14 @@ void setup() {
 }
 
 void loop() {	
-
-	konsolGirdi = Serial.read();
-	butonGirdi = digitalRead(buton);
 	
-	if (butonGirdi==HIGH){		//girdi=='b' koþulu konsoldan "b" harfi okunursa ledi yakar.
+	if (digitalRead(buton)==HIGH){		//Serial.read()=='b' koþulu konsoldan "b" harfi okunursa ledi yakar.
 
 		digitalWrite(led, HIGH);
 
 	}
 
-	else if(butonGirdi==LOW){		//girdi=='k' koþulu konsoldan "k" harfi okunursa ledi söndürür.
+	else if(digitalRead(buton)==LOW){		//Serial.read()=='k' koþulu konsoldan "k" harfi okunursa ledi söndürür.
 
 		digitalWrite(led, LOW);
 

@@ -1,7 +1,5 @@
 #define mesafe A0
 #define gaz A1
-int mesafeDeger;
-int gazDeger;
 #define led 2
 
 void setup() {
@@ -13,18 +11,16 @@ Serial.begin(9600);
 
 void loop() {
 
-mesafeDeger=analogRead(mesafe);
-if (mesafeDeger>=35){digitalWrite(led,HIGH);}
+if (analogRead(mesafe>=35)){digitalWrite(led,HIGH);}
 else {digitalWrite(led,LOW);}
 Serial.print("Mesafe değeri :");
-Serial.println(mesafeDeger);
+Serial.println(analogRead(mesafe));
 delay(500);
 
-gazDeger=analogRead(gaz);
-if (gazDeger>=35){digitalWrite(led,HIGH);}
+if (analogRead(gaz)>=35){digitalWrite(led,HIGH);}
 else {digitalWrite(led,LOW);}
 Serial.print("Gaz değeri :");
-Serial.println(gazDeger);
+Serial.println(analogRead(gaz));
 delay(500);
 
 }

@@ -1,8 +1,6 @@
-int role1ON=8;
-int role1OFF=9;
-int role1=5;
-int roleONDurum;
-int roleOFFDurum;
+#define role1ON 8
+#define role1OFF 9
+#define role1 5
 
 void setup() {
 
@@ -14,10 +12,7 @@ pinMode(role1,OUTPUT);
 
 void loop() {
 
-roleONDurum = digitalRead(role1ON);
-roleOFFDurum = digitalRead(role1OFF);
-
-if (roleONDurum==HIGH){digitalWrite(role1,HIGH);}
-else if (roleOFFDurum==HIGH){digitalWrite(role1,LOW);}
+if (digitalRead(role1ON)){digitalWrite(role1,HIGH);}
+if (digitalRead(role1OFF)){digitalWrite(role1,LOW);}
 
 }
