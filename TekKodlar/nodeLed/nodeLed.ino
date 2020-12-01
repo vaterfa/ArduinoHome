@@ -1,5 +1,5 @@
-#define led 4		//led 4 nolu pine baðlandý.
-#define buton 5		//buton 5 nolu pine baðlandý.
+#define led 4		
+#define buton 5		
 
 void setup() {
 
@@ -10,13 +10,17 @@ void setup() {
 
 void loop() {	
 	
-	if (digitalRead(buton)==HIGH){		//Serial.read()=='b' koþulu konsoldan "b" harfi okunursa ledi yakar.
+	if (digitalRead(buton)==HIGH){		
+	//Serial.read()=='s' koþulu konsoldan 
+	//"b" harfi okunursa ledi yakar.
 
 		digitalWrite(led, HIGH);
 
 	}
 
-	else if(digitalRead(buton)==LOW){		//Serial.read()=='k' koþulu konsoldan "k" harfi okunursa ledi söndürür.
+	else if(digitalRead(buton)==LOW){		
+	//Serial.read()=='b' koþulu konsoldan 
+	//"k" harfi okunursa ledi söndürür.
 
 		digitalWrite(led, LOW);
 

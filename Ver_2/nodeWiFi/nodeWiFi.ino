@@ -3,8 +3,8 @@
 
 Servo motor;
 
-const char* ssid     = "ssid";          //ESP'nin bağlanacağı WiFi adı.
-const char* password = "pass";          //WiFi şifresi.
+const char* ssid     = "ssid";          
+const char* password = "pass";          
 
 WiFiServer server(80);
 

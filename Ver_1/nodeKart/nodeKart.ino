@@ -27,14 +27,14 @@ void loop() {
     char c = Serial.read();
     if(c == '0')
     {
-        motor.attach(servo1); //servonun 11 numaralı pinde olduğu tanıtıldı.
-        motor.write(0);   //motorun 0 dereceye hareketi sağlandı.
+        motor.attach(servo1); 
+        motor.write(0);  
         delay(1000);
     }
     else if(c == '1')
     {
-        motor.attach(servo1); //servonun 11 numaralı pinde olduğu tanıtıldı.
-        motor.write(90);  //motorun 90 dereceye hareketi sağlandı.
+        motor.attach(servo1); 
+        motor.write(90); 
         delay(1000);
     }
     else if(c == '2')
