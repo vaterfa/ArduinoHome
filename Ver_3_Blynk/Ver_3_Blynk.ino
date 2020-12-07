@@ -31,6 +31,7 @@ int servoTut;
 {
   servoTut = param.asInt(); 
   motor.write(servoTut); 
+  delay(500);
 }
 
   BLYNK_WRITE(V3)
@@ -44,6 +45,7 @@ void setup()
   Blynk.begin(auth, ssid, pass);
 
   motor.attach(5);
+  motor.write(200);
 
   pinMode(mesafeSensor, INPUT);
   pinMode(gazSensor, INPUT);
