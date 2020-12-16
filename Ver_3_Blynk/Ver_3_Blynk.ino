@@ -19,25 +19,29 @@ int mesafeDeger;
 
 Servo motor;
 
-int servoTut;
+#define role1 12
+#define role2 14
 
-#define role1 0
-#define role2 4
-
-#define mesafeSensor 2
+#define mesafeSensor 4
 #define gazSensor A0
+
+bool kontrol = Blynk.connected();
+
+BLYNK_CONNECTED() 
+{
+  Blynk.syncAll();
+}
 
   BLYNK_WRITE(V0)
 {
-  servoTut = param.asInt(); 
-  motor.write(servoTut); 
-  delay(500);
+  motor.write(param.asInt());
 }
 
   BLYNK_WRITE(V3)
 {
-  mesafeKontrol = param.asInt();
+  mesafeKontrol = param.asInt(); 
 }
+
 void setup()
 {
   Serial.begin(115200);
@@ -45,22 +49,17 @@ void setup()
   Blynk.begin(auth, ssid, pass);
 
   motor.attach(5);
-  motor.write(200);
 
   pinMode(mesafeSensor, INPUT);
   pinMode(gazSensor, INPUT);
-  
 
-  digitalWrite(role1, HIGH);
-  digitalWrite(role2, HIGH);
-  
-  Blynk.notify("Bağlantı kuruldu.");
+  Blynk.notify("Bağlantı kuruldu.");  
 }
 
 void loop()
 {
   Blynk.run();
-
+  
   gazDeger = analogRead(gazSensor);
   mesafeDeger = digitalRead(mesafeSensor);
   
@@ -70,6 +69,6 @@ void loop()
   }
   else { Blynk.virtualWrite(V1, "M. Tespit Kapalı");}
 
-  if (gazDeger < 270 && gazDeger > 40) {Blynk.virtualWrite(V2, "Gaz Normal");}
+  if (gazDeger < 150 && gazDeger > 40) {Blynk.virtualWrite(V2, "Gaz Normal");}
   else { Blynk.virtualWrite(V2, "GAZ UYARI!!"); Blynk.notify("GAZ UYARI!!"); }
 }
