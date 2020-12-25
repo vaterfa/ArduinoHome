@@ -1,4 +1,4 @@
 # ArduinoHome
 Controlling home with arduino card.
 
-Every folder has README folder about it's content.
+Every folder has README folder about it.
