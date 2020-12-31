@@ -19,42 +19,24 @@ int mesafeDeger;
 
 Servo motor;
 
-#define role1 12
-#define role2 14
+int servoTut;
 
-#define mesafeSensor 4
+#define role1 0
+#define role2 4
+
+#define mesafeSensor 2
 #define gazSensor A0
-
-BLYNK_CONNECTED() 
-{
-  Blynk.syncAll();
-}
 
   BLYNK_WRITE(V0)
 {
-  motor.write(param.asInt());
+  servoTut = param.asInt(); 
+  motor.write(servoTut); 
 }
 
   BLYNK_WRITE(V3)
 {
-  mesafeKontrol = param.asInt(); 
+  mesafeKontrol = param.asInt();
 }
-
-void sensorler()
-{
-  gazDeger = analogRead(gazSensor);
-  mesafeDeger = digitalRead(mesafeSensor);
-  
-  if(mesafeKontrol==1){ 
-    if (mesafeDeger != HIGH) {Blynk.virtualWrite(V1, "Mesafe Normal"); }
-    else { Blynk.virtualWrite(V1, "MESAFE UYARI!!"); Blynk.notify("MESAFE UYARI!!"); }
-  }
-  else { Blynk.virtualWrite(V1, "M. Tespit Kapalı");}
-
-  if (gazDeger < 150 && gazDeger > 40) {Blynk.virtualWrite(V2, "Gaz Normal");}
-  else { Blynk.virtualWrite(V2, "GAZ UYARI!!"); Blynk.notify("GAZ UYARI!!"); }
-}
-
 void setup()
 {
   Serial.begin(115200);
@@ -65,12 +47,27 @@ void setup()
 
   pinMode(mesafeSensor, INPUT);
   pinMode(gazSensor, INPUT);
+  
 
-  Blynk.notify("Bağlantı kuruldu.");  
+  digitalWrite(role1, HIGH);
+  digitalWrite(role2, HIGH);
+  
+  Blynk.notify("Bağlantı kuruldu.");
 }
 
 void loop()
 {
   Blynk.run();
-  sensorler();
+
+  gazDeger = analogRead(gazSensor);
+  mesafeDeger = digitalRead(mesafeSensor);
+  
+  if(mesafeKontrol==1){ 
+    if (mesafeDeger != HIGH) {Blynk.virtualWrite(V1, "Mesafe Normal"); }
+    else { Blynk.virtualWrite(V1, "MESAFE UYARI!!"); Blynk.notify("MESAFE UYARI!!"); }
+  }
+  else { Blynk.virtualWrite(V1, "M. Tespit Kapalı");}
+
+  if (gazDeger < 270 && gazDeger > 40) {Blynk.virtualWrite(V2, "Gaz Normal");}
+  else { Blynk.virtualWrite(V2, "GAZ UYARI!!"); Blynk.notify("GAZ UYARI!!"); }
 }
